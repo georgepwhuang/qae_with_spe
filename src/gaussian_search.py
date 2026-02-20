@@ -37,7 +37,7 @@ def generate_gaussian_samples(
     return samp, best_indices, best_queries, depth
 
 
-def qcels(p, M, N, rng, sigma=4, gaussian_radius=None, sample_repeat=100, G=16):
+def glsae(p, M, N, rng, sigma=4, gaussian_radius=None, sample_repeat=100, G=16):
     samp, indices, queries, depth = generate_gaussian_samples(
         p, M, N, rng, sigma, gaussian_radius, sample_repeat
     )
@@ -52,7 +52,7 @@ def qcels(p, M, N, rng, sigma=4, gaussian_radius=None, sample_repeat=100, G=16):
     out = (1 - np.cos((theta + t / G - 4) / M * np.pi)) / 2
     return out, queries, depth
 
-def qmegs(p, M, N, rng, sigma=4, gaussian_radius=None, sample_repeat=100, G=16):
+def gdmae(p, M, N, rng, sigma=4, gaussian_radius=None, sample_repeat=100, G=16):
     samp, indices, queries, depth = generate_gaussian_samples(
         p, M, N, rng, sigma, gaussian_radius, sample_repeat
     )
