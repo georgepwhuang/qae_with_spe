@@ -28,6 +28,7 @@ class CSAECache(UserList):
         positions = load_csae_positions(q)
         super().__init__(positions)
 
+
 if __name__ == "__main__":
     for i in range(0, 9):
         generate_csae_positions(i)

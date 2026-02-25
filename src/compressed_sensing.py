@@ -18,7 +18,7 @@ def compressed_sensing(p, M, N, rng, alpha=0.1, sample_repeat=100, G=16):
     best_diff = 1e10
     best_queries = 0
     ev = np.mean(np.arange(M))
-    for _ in range(sample_repeat):        
+    for _ in range(sample_repeat):
         r = np.min((5, N // ev - 1))
         N_s = int(N // ev + rng.uniform(-r, r))
         indices = rng.choice(M, size=N_s)

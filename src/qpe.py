@@ -2,7 +2,7 @@ import numpy as np
 
 
 def qpe(p, M, N_s, rng):
-    M_true = M//2
+    M_true = M // 2
     depth = 2 * M_true - 1
     queries = (2 * M_true - 1) * N_s
     omega = np.arcsin(np.sqrt(p))

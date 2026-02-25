@@ -1,3 +1,8 @@
+"""
+The following code is slighly modified from
+https://github.com/qiskit-community/ChebAE/blob/main/chebae.ipynb.
+"""
+
 import numpy as np
 from scipy.special import eval_chebyt as cheb
 from statsmodels.stats.proportion import proportion_confint
