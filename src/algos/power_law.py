@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def power_law_(p, eps, beta, rng, n_shots=10):
+def power_law(p, eps, beta, rng, n_shots=10):
     theta = np.arcsin(np.sqrt(p))
 
     theta_grid = np.arange(0, np.pi / 2 + eps, eps)
