@@ -2,7 +2,7 @@ import numpy as np
 
 
 def generate_gaussian_samples(
-    p, M, N, rng, sigma=4, gaussian_radius=None, sample_repeat=100, sine=False, odd_only=False
+    p, M, N_t, rng, sigma=4, gaussian_radius=None, sample_repeat=100, sine=False, odd_only=False
 ):
     """Generate depth samples from a Gaussian profile and simulate outcomes.
 
@@ -12,7 +12,7 @@ def generate_gaussian_samples(
         True Bernoulli success probability used by simulation.
     M : int
         Maximum supported query depth.
-    N : int
+    N_t : int
         Target total query budget.
     rng : numpy.random.Generator
         Random number generator used for depth and outcome sampling.
@@ -38,19 +38,24 @@ def generate_gaussian_samples(
     T = M / sigma
     x = np.arange(-gaussian_radius, gaussian_radius)
     probs = np.exp(-0.5 * (x / T) ** 2)
-    probs /= probs.sum()
+    prob_sum = probs.sum()
+    if odd_only:
+        probs = np.where(x%2==1, probs, 0)
+    probs /= prob_sum
+    if odd_only:
+        probs[x==0] = 1 - probs.sum()
     best_indices = None
     best_diff = 1e10
     best_queries = 0
     ev = np.sum(probs * np.abs(x))
     # Stochastically match the target query budget N.
     for _ in range(sample_repeat):
-        r = np.min((5, N // ev - 1))
-        N_s = int(N // ev + rng.uniform(-r, r))
+        r = np.min((5, N_t // ev - 1))
+        N_s = int(N_t // ev + rng.uniform(-r, r))
         indices = np.abs(rng.choice(x, size=N_s, p=probs))
         indices = np.where(indices <= M, indices, 0)
         queries = np.sum(indices)
-        diff = np.abs(queries - N)
+        diff = np.abs(queries - N_t)
         if diff < best_diff:
             best_diff = diff
             best_queries = queries

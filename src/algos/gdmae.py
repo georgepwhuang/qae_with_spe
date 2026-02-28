@@ -3,7 +3,7 @@ from src.util.gauss_util import generate_gaussian_samples
 
 
 def gdmae(
-    p, M, N, rng, sigma=4, gaussian_radius=None, sample_repeat=100, G=16
+    p, M, N_t, rng, sigma=4, gaussian_radius=None, sample_repeat=100, G=16
 ):
     """Run GDMAE using Gaussian depth sampling and correlation maximization.
 
@@ -13,7 +13,7 @@ def gdmae(
         True Bernoulli success probability used by simulation.
     M : int
         Grid size for phase/amplitude search.
-    N : int
+    N_t : int
         Target total query budget.
     rng : numpy.random.Generator
         Random number generator used internally.
@@ -32,7 +32,7 @@ def gdmae(
         ``(estimate, queries, depth)`` from GDMAE.
     """
     samp, indices, queries, depth = generate_gaussian_samples(
-        p, M, N, rng, sigma, gaussian_radius, sample_repeat, sine=True, odd_only=True
+        p, M, N_t, rng, sigma, gaussian_radius, sample_repeat, sine=True, odd_only=True
     )
     t_list = np.expand_dims(np.arange(M + 1), -1)
     t_sharp_list = np.expand_dims(np.arange(8 * G), -1)
