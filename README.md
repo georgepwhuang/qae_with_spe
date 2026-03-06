@@ -10,7 +10,7 @@ To use this code, please cite the following:
   author = {Huang, Po-Wei and Koczor, B\'{a}lint},
   year = 2026,
   month = mar,
-  eprint = {2603.xxxxx},
+  eprint = {2603.05475},
   archiveprefix = {arXiv},
   primaryclass = {quant-ph}
 }
