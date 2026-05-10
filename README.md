@@ -12,6 +12,7 @@ To use this code, please cite the following:
   month = mar,
   eprint = {2603.05475},
   archiveprefix = {arXiv},
-  primaryclass = {quant-ph}
+  primaryclass = {quant-ph},
+  url = {https://arxiv.org/abs/2603.05475}
 }
 ```

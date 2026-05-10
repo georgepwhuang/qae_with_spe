@@ -71,7 +71,7 @@ def gmmae(p, M, N_t, rng, sigma=4, gaussian_radius=None, sample_repeat=100, G=16
     Returns
     -------
     tuple[float, int, int]
-        ``(estimate, queries, depth)`` from GDMAE.
+        ``(estimate, queries, depth)`` from GMMAE.
     """
     samp, indices, queries, depth = generate_gaussian_samples(
         p, M, N_t, rng, sigma, gaussian_radius, sample_repeat
